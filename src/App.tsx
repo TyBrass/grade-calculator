@@ -51,6 +51,7 @@ function App() {
                     </ul>
                 </div>
             </div>
+            <button className='w-[64%] h-[40px] leading-3 mb-[8px]'>+</button>
             <div className='flex justify-evenly border-t-4 border-white'>
                 <div className='flex flex-col max-w-[120px]'>
                     <h2 className='italic'>Weight Left</h2>
