@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import githubLight from './assets/github-mark.png'
+import githubDark from './assets/github-mark.png'
 import './App.css'
 
 function App() {
@@ -17,10 +19,12 @@ function App() {
     }
 
   return (
-    <div className='flex flex-col items-center align-items h-screen max-w-[800px]'>
+    <>
+    <a href="https://github.com/TyBrass/grade-calculator"><img src={githubLight} alt="github" className='w-[40px] h-[40px] ml-auto' /></a>
+    <div className='flex flex-col items-center'>
         <h1>Grade Calculator</h1>
-        <p className='my-[10px] max-w-[600px]'>Input weightings and grades for each piece of completed coursework to see what average is required in the remainder of the course to achieve certain final marks</p>
-        <div className='bg-slate-200 w-[300px]'>
+        <p className='my-[10px] max-w-[400px]'>Input weightings and grades for each piece of completed coursework to see what average is required in the remainder of the course to achieve certain final marks</p>
+        <div className='bg-slate-200 w-[400px]'>
             <div className='flex justify-evenly'>
                 <div className='flex flex-col mb-[4px]'>
                     <h2>Weight %</h2>
@@ -98,6 +102,7 @@ function App() {
             </div>
         </div>
     </div>
+    </>
   )
 }
 
