@@ -25,13 +25,13 @@ function App() {
         <div className='bg-slate-200 w-[400px]'>
             <div className='flex justify-evenly'>
                 <div className='flex flex-col mb-[4px]'>
-                    <h2>Weight %</h2>
+                    <h2 className='my-[4px]'>Weight %</h2>
                     <ul>
                         {grades.map((c, index) => (
                             <li key={index} className='flex justify-evenly mb-[8px]'>
                                 <input className='w-[50px]' type="number" min='0' max='100' placeholder='0' onChange={e => {
                                     const newGrades = [...grades]
-                                    newGrades[index][0] = parseInt(e.target.value)
+                                    newGrades[index][0] = parseFloat(e.target.value)
                                     setGrades(newGrades)
                                 }} />
                             </li>
@@ -39,13 +39,13 @@ function App() {
                     </ul>
                 </div>
                 <div className='flex flex-col mb-[4px]'>
-                    <h2>Grade %</h2>
+                    <h2 className='my-[4px]'>Grade %</h2>
                     <ul>
                         {grades.map((c, index) => (
                             <li key={index} className='flex justify-evenly mb-[8px]'>
                                 <input className='w-[50px]' type="number" min='0' max='100' placeholder='0' onChange={e => {
                                     const newGrades = [...grades]
-                                    newGrades[index][1] = parseInt(e.target.value)
+                                    newGrades[index][1] = parseFloat(e.target.value)
                                     setGrades(newGrades)
                                 }} />
                             </li>
@@ -60,17 +60,17 @@ function App() {
             }}>+</button>
             <div className='flex justify-evenly border-t-4 border-white'>
                 <div className='flex flex-col max-w-[120px]'>
-                    <h2 className='italic'>Weight Left</h2>
+                    <h2 className='italic mt-[4px]'>Weight Left</h2>
                     {remainingWeight}%
                 </div>
                 <div className='flex flex-col'>
-                    <h2 className='italic'>Current Grade</h2>
+                    <h2 className='italic mt-[4px]'>Current Grade</h2>
                     {remainingWeight === 100 ? '--' : currentGrade.toFixed(2) + '%'}
                 </div>
             </div>
             <div className='flex justify-evenly mb-[4px] border-t-4 border-white'>
                 <div>
-                    <h2 className='italic'>To Get...%</h2>
+                    <h2 className='italic my-[4px]'>To Get...%</h2>
                     <ul>
                         <li><input className='w-[50px] text-center' type="number" min='0' max='100' placeholder='0' onChange={e => setGoal(parseFloat(e.target.value))} /></li>
                         <li>95</li>
@@ -86,7 +86,7 @@ function App() {
                     </ul>
                 </div>
                 <div>
-                    <h2 className='italic'>You Need...%</h2>
+                    <h2 className='italic my-[4px]'>You Need...%</h2>
                     <ul>
                         {goals.map((goal, index) => {
                             const g = requiredGrade(goal)
