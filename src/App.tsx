@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import githubLight from './assets/github-mark.png'
-import githubDark from './assets/github-mark.png'
 import './App.css'
 
 function App() {
     const [grades, setGrades] = useState<[number, number][]>([[0, 0], [0, 0], [0, 0], [0, 0]])
-
+    const [goal, setGoal] = useState<number>(0)
     const weightSum = grades.reduce((accumulator, currentValue) => accumulator + currentValue[0], 0)
     console.log(weightSum)
     const remainingWeight = 100 - weightSum
@@ -20,7 +19,7 @@ function App() {
 
   return (
     <>
-    <a href="https://github.com/TyBrass/grade-calculator"><img src={githubLight} alt="github" className='w-[40px] h-[40px] ml-auto' /></a>
+    <a href="https://github.com/TyBrass/grade-calculator" target="_blank" ><img src={githubLight} alt="github" className='w-[40px] h-[40px] ml-auto' /></a>
     <div className='flex flex-col items-center'>
         <h1>Grade Calculator</h1>
         <p className='my-[10px] max-w-[400px]'>Input weightings and grades for each piece of completed coursework to see what average is required in the remainder of the course to achieve certain final marks</p>
@@ -55,7 +54,11 @@ function App() {
                     </ul>
                 </div>
             </div>
-            <button className='w-[64%] h-[40px] leading-3 mb-[8px]'>+</button>
+            <button className='w-[64%] h-[40px] leading-3 mb-[8px]' onClick={() => {
+                const newGrades = [...grades]
+                newGrades.push([0, 0])
+                setGrades(newGrades)
+            }}>+</button>
             <div className='flex justify-evenly border-t-4 border-white'>
                 <div className='flex flex-col max-w-[120px]'>
                     <h2 className='italic'>Weight Left</h2>
@@ -70,7 +73,7 @@ function App() {
                 <div>
                     <h2 className='italic'>To Get...%</h2>
                     <ul>
-                        <li><input className='w-[50px] text-center' type="number" min='0' max='100' placeholder='0' /></li>
+                        <li><input className='w-[50px] text-center' type="number" min='0' max='100' placeholder='0' onChange={e => setGoal(parseInt(e.target.value))} /></li>
                         <li>95</li>
                         <li>90</li>
                         <li>85</li>
@@ -86,7 +89,7 @@ function App() {
                 <div>
                     <h2 className='italic'>You Need...%</h2>
                     <ul>
-                        <li>{requiredGrade(0).toFixed(2)}</li>
+                        <li>{requiredGrade(goal).toFixed(2)}</li>
                         <li>{requiredGrade(95).toFixed(2)}</li>
                         <li>{requiredGrade(90).toFixed(2)}</li>
                         <li>{requiredGrade(85).toFixed(2)}</li>
