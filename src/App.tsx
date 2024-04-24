@@ -6,15 +6,14 @@ function App() {
     const [grades, setGrades] = useState<[number, number][]>([[0, 0], [0, 0], [0, 0], [0, 0]])
     const [goal, setGoal] = useState<number>(0)
     const weightSum = grades.reduce((accumulator, currentValue) => accumulator + currentValue[0], 0)
-    console.log(weightSum)
     const remainingWeight = 100 - weightSum
     const currentGrade = 1.0 * grades.reduce((accumulator, currentValue) => accumulator + (currentValue[0] / (0.01 * weightSum)) * currentValue[1] * 0.01, 0) 
+    const goals = [goal, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50]
 
     const requiredGrade = (desiredGrade: number) => {
         const received = weightSum * currentGrade * 0.0001
-        const desired = 0.01 * desiredGrade;
-        const remaining = remainingWeight * 0.01
-        return (desired - received) / remaining * 100
+        const x = ( (desiredGrade * 0.01) - received) / (remainingWeight * 0.01) * 100
+        return x
     }
 
   return (
@@ -73,7 +72,7 @@ function App() {
                 <div>
                     <h2 className='italic'>To Get...%</h2>
                     <ul>
-                        <li><input className='w-[50px] text-center' type="number" min='0' max='100' placeholder='0' onChange={e => setGoal(parseInt(e.target.value))} /></li>
+                        <li><input className='w-[50px] text-center' type="number" min='0' max='100' placeholder='0' onChange={e => setGoal(parseFloat(e.target.value))} /></li>
                         <li>95</li>
                         <li>90</li>
                         <li>85</li>
@@ -89,17 +88,15 @@ function App() {
                 <div>
                     <h2 className='italic'>You Need...%</h2>
                     <ul>
-                        <li>{requiredGrade(goal).toFixed(2)}</li>
-                        <li>{requiredGrade(95).toFixed(2)}</li>
-                        <li>{requiredGrade(90).toFixed(2)}</li>
-                        <li>{requiredGrade(85).toFixed(2)}</li>
-                        <li>{requiredGrade(80).toFixed(2)}</li>
-                        <li>{requiredGrade(75).toFixed(2)}</li>
-                        <li>{requiredGrade(70).toFixed(2)}</li>
-                        <li>{requiredGrade(65).toFixed(2)}</li>
-                        <li>{requiredGrade(60).toFixed(2)}</li>
-                        <li>{requiredGrade(55).toFixed(2)}</li>
-                        <li>{requiredGrade(50).toFixed(2)}</li>
+                        {goals.map((goal, index) => {
+                            const g = requiredGrade(goal)
+                            let shown = ""
+                            if (isNaN(g)) {shown = '--'}
+                            else if (g > 100) {shown = "∞"}
+                            else if (g < 0.00) {shown = "0.00"}
+                            else {shown = g.toFixed(2)}
+                            return <li key={index}>{shown}</li>
+                        })}
                     </ul>
                 </div>
             </div>
