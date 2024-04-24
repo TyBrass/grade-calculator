@@ -9,6 +9,12 @@ function App() {
     const remainingWeight = 100 - weightSum
     const currentGrade = 1.0 * grades.reduce((accumulator, currentValue) => accumulator + (currentValue[0] / (0.01 * weightSum)) * currentValue[1] * 0.01, 0) 
 
+    const requiredGrade = (desiredGrade: number) => {
+        const received = weightSum * currentGrade * 0.0001
+        const desired = 0.01 * desiredGrade;
+        const remaining = remainingWeight * 0.01
+        return (desired - received) / remaining * 100
+    }
 
   return (
     <div className='flex flex-col items-center align-items h-screen max-w-[800px]'>
@@ -52,7 +58,7 @@ function App() {
                 </div>
                 <div className='flex flex-col'>
                     <h2 className='italic'>Current Grade</h2>
-                    {remainingWeight === 100 ? '--' : currentGrade.toFixed(1) + '%'}
+                    {remainingWeight === 100 ? '--' : currentGrade.toFixed(2) + '%'}
                 </div>
             </div>
             <div className='flex justify-evenly mb-[4px] border-t-4 border-white'>
@@ -75,17 +81,17 @@ function App() {
                 <div>
                     <h2 className='italic'>You Need...%</h2>
                     <ul>
-                        <li><input className='w-[50px] text-center' type="number" min='0' max='100' placeholder='0' /></li>
-                        <li>{0}</li>
-                        <li>{0}</li>
-                        <li>{0}</li>
-                        <li>{0}</li>
-                        <li>{0}</li>
-                        <li>{0}</li>
-                        <li>{0}</li>
-                        <li>{0}</li>
-                        <li>{0}</li>
-                        <li>{0}</li>
+                        <li>{requiredGrade(0).toFixed(2)}</li>
+                        <li>{requiredGrade(95).toFixed(2)}</li>
+                        <li>{requiredGrade(90).toFixed(2)}</li>
+                        <li>{requiredGrade(85).toFixed(2)}</li>
+                        <li>{requiredGrade(80).toFixed(2)}</li>
+                        <li>{requiredGrade(75).toFixed(2)}</li>
+                        <li>{requiredGrade(70).toFixed(2)}</li>
+                        <li>{requiredGrade(65).toFixed(2)}</li>
+                        <li>{requiredGrade(60).toFixed(2)}</li>
+                        <li>{requiredGrade(55).toFixed(2)}</li>
+                        <li>{requiredGrade(50).toFixed(2)}</li>
                     </ul>
                 </div>
             </div>
