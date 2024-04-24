@@ -21,7 +21,7 @@ function App() {
     <a href="https://github.com/TyBrass/grade-calculator" target="_blank" ><img src={githubLight} alt="github" className='w-[40px] h-[40px] ml-auto' /></a>
     <div className='flex flex-col items-center'>
         <h1>Grade Calculator</h1>
-        <p className='my-[10px] max-w-[400px]'>Input weightings and grades for each piece of completed coursework to see what average is required in the remainder of the course to achieve certain final marks</p>
+        <p className='my-[10px] max-w-[400px]'>Input weightings and grades for completed coursework to see what average is required in the remainder of the course to achieve certain final marks</p>
         <div className='bg-slate-200 w-[400px]'>
             <div className='flex justify-evenly'>
                 <div className='flex flex-col mb-[4px]'>

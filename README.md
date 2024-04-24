@@ -1,3 +1,3 @@
 # Grade Calculator
 
-Super simple little web app, because it's been a long time since I put together a vanilla React app.
+Super simple web app, because it's been a while since I put together some vanilla React.
